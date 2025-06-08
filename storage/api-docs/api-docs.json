@@ -1,0 +1,60 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Assessment API Documentation",
+        "description": "Assessment API Documentation",
+        "contact": {
+            "email": "gustavo.caldeira1@outlook.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "description": "Lista todos os estados",
+                "operationId": "4e3a6011fed34a489751478cb0030ec2",
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Mensagem de erro da exception",
+                                        "value": {
+                                            "message": "Exemplo de mensagem de erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Task",
+            "description": "Task related endpoints"
+        }
+    ]
+}
