@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TaskStoreRequest;
+use App\Http\Requests\TaskUpdateRequest;
 use App\Services\TaskService;
-use App\Http\Requests\{TaskStoreRequest, TaskUpdateRequest};
 
 class TaskController extends Controller
 {
-    public function __construct(private TaskService $service)
-    {
-
-    }
+    public function __construct(private TaskService $service) {}
 
     /**
      * @OA\Get(
@@ -20,10 +17,13 @@ class TaskController extends Controller
      *     description="List all tasks",
      *     security={{ "api_token": {} }},
      *     tags={"Task"},
+     *
      *     @OA\Response(
      *          response=500,
      *          description="Erro interno do servidor.",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Examples(
      *                  example="result",
      *                  value={"message": "Exemplo de mensagem de erro"},
@@ -40,7 +40,7 @@ class TaskController extends Controller
      */
     public function store(TaskStoreRequest $request)
     {
-        //
+        $this->service->store($request->validated());
     }
 
     /**
@@ -48,7 +48,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $this->service->show($id);
     }
 
     /**
@@ -56,7 +56,7 @@ class TaskController extends Controller
      */
     public function update(TaskUpdateRequest $request, string $id)
     {
-        //
+        $this->service->update($request->validated(), $id);
     }
 
     /**
